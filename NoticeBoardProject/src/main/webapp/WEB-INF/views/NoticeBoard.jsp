@@ -54,12 +54,12 @@
 						success: function(data){
 							console.log(data);
 							$("#board_table").html('<tr>'
-												+ '	<th class="notice_width2">번호</th>'
-												+ '	<th class="notice_width">제목</th>'
-												+ '	<th class="notice_width1">작성자</th>'
-												+ '	<th class="notice_width3">작성일시</th>'
-												+ '	<th>조회수</th>'
-												+ '</tr>');
+										+ '	<th class="notice_width2">번호</th>'
+										+ '	<th class="notice_width">제목</th>'
+										+ '	<th class="notice_width1">작성자</th>'
+										+ '	<th class="notice_width3">작성일시</th>'
+										+ '	<th>조회수</th>'
+										+ '</tr>');
 							
 							for(var i = 0; i<=data.length-1; i++) {
 								let str = "<tr>"
