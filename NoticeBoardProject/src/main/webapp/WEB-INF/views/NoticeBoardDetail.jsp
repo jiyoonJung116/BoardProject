@@ -136,30 +136,30 @@
 		</div>
 		<table style="margin-left: 388px;">
 			<tbody>
-					<tr>
-						<th class="detail_st1 detail_st2">제목</th>
-                    	<td class="detail_st">${detailBoard.title}</td>
-		            </tr>
-	                <tr>
-						<th class="detail_st1 detail_st2">작성자</th>
-                   		<td class="writer txtLittle detail_st3">${detailBoard.nickname}</td>
-	                </tr>
-	                <tr>
-						<th class="detail_st1 detail_st2">작성일</th>
-                   		<td class="writer txtLittle detail_st3">${detailBoard.writedate}</td>
-	                </tr>
-	                <tr>
-						<th class="detail_st1 detail_st2">조회</th>
-                   		<td class="writer txtLittle detail_st3">${detailBoard.hitcount}</td>
-	                </tr>
-	                <tr class="view">
-	                	<th class="detail_st5"></th>
-						<td>
-	               			<div class="detail">
-	                  			<div>${detailBoard.content}</div>
-	               			</div>
-	                    </td>
-	                </tr>
+				<tr>
+					<th class="detail_st1 detail_st2">제목</th>
+                    			<td class="detail_st">${detailBoard.title}</td>
+		           	</tr>
+	                	<tr>
+					<th class="detail_st1 detail_st2">작성자</th>
+                   			<td class="writer txtLittle detail_st3">${detailBoard.nickname}</td>
+	                	</tr>
+		                <tr>
+					<th class="detail_st1 detail_st2">작성일</th>
+	                   		<td class="writer txtLittle detail_st3">${detailBoard.writedate}</td>
+		                </tr>
+		                <tr>
+					<th class="detail_st1 detail_st2">조회</th>
+	                   		<td class="writer txtLittle detail_st3">${detailBoard.hitcount}</td>
+		                </tr>
+		                <tr class="view">
+		                	<th class="detail_st5"></th>
+					<td>
+		               			<div class="detail">
+		                  			<div>${detailBoard.content}</div>
+		               			</div>
+		                    	</td>
+		                </tr>
 			</tbody>
 		</table>
 		<div>
@@ -220,9 +220,9 @@
 				                                <span class="comment_date detail_st5 detail_st6" style="color: #dbd3d3;">${dto.writedate}</span>
 				                                <!-- 대댓글 수정, 삭제 버튼 -->
 				                                <c:if test="${loginId eq writerId}">
-									                <button class="detail_bt reply_update_bt">수정하기</button>
-									                <button class="detail_bt reply_delete_bt">삭제하기</button>
-					            				</c:if>
+									<button class="detail_bt reply_update_bt">수정하기</button>
+									<button class="detail_bt reply_delete_bt">삭제하기</button>
+					            		</c:if>
 				                            </div>
 				                        </div>
 				                    </div>
