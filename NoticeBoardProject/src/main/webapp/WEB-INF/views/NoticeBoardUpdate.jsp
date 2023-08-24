@@ -21,31 +21,31 @@
 				<tbody>
 					<tr>
 						<th class="detail_st1 detail_st2">제목</th>
-                    	<td class="detail_st">
-	                    	<input type="text" name = "title" class="title_update" value="${detailBoard.title}"/>
-	                    	<input type="hidden" name ="bno" value="${detailBoard.bno}">
-	                    </td>
-		            </tr>
-	                <tr>
+                    				<td class="detail_st">
+				                    	<input type="text" name = "title" class="title_update" value="${detailBoard.title}"/>
+				                    	<input type="hidden" name ="bno" value="${detailBoard.bno}">
+	                    			</td>
+		            		</tr>
+			                <tr>
 						<th class="detail_st1 detail_st2">작성자</th>
-                   		<td class="writer txtLittle detail_st3">${detailBoard.nickname}</td>
-	                </tr>
-	                <tr>
+						<td class="writer txtLittle detail_st3">${detailBoard.nickname}</td>
+			                </tr>
+			                <tr>
 						<th class="detail_st1 detail_st2">작성일</th>
-                   		<td class="writer txtLittle detail_st3">${detailBoard.writedate}</td>
-	                </tr>
-	                <tr>
+		                   		<td class="writer txtLittle detail_st3">${detailBoard.writedate}</td>
+			                </tr>
+			                <tr>
 						<th class="detail_st1 detail_st2">조회</th>
-                   		<td class="writer txtLittle detail_st3">${detailBoard.hitcount}</td>
-	                </tr>
-	                <tr class="view">
-	                	<th class="detail_st5"></th>
+		                   		<td class="writer txtLittle detail_st3">${detailBoard.hitcount}</td>
+			                </tr>
+	                		<tr class="view">
+			                	<th class="detail_st5"></th>
 						<td>
-	               			<div class="detail">
-	               				<textarea name="content" class="update_comment_area">${detailBoard.content}</textarea>
-	               			</div>
-	                    </td>
-	                </tr>
+	               					<div class="detail">
+	               						<textarea name="content" class="update_comment_area">${detailBoard.content}</textarea>
+	               					</div>
+			                    	</td>
+			                </tr>
 				</tbody>
 			</table>
 			<input type="submit" class="detail_bt" value="작성완료"/>
