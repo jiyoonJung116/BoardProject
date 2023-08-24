@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="commentMapper">
+	<delete id="deleteComment">
+		DELETE FROM comments WHERE rno = #{rno}
+	</delete>
+	
+	<update id="commentUpdate" parameterType="java.util.Map">
+		UPDATE comments 
+		SET content =#{content}, writedate = sysdate 
+		WHERE rno = #{rno}
+	</update>
+	
+	<select id="getWritedate" resultType="java.lang.String">
+		SELECT writedate FROM comments WHERE rno=#{rno}
+	</select>
+	
+	<insert id="writeComment">
+	    INSERT INTO comments(rno, bno, writer_id, content, writedate, step, r_order)
+	    VALUES(SEQ_rno.nextval, #{bno}, #{writerId}, #{content}, sysdate, 0, SEQ_r_order.nextval)
+	</insert>
+	
+	<insert id="writeReply">
+		INSERT INTO comments (rno, bno, writer_id, content, writedate, step, ref, r_order)
+		VALUES (SEQ_rno.nextval, #{bno}, #{writerId}, #{content}, sysdate, 1, #{rno}, SEQ_r_order.nextval)
+	</insert>
+</mapper>

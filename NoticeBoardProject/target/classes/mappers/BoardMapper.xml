@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardMapper">
+	<select id="selectBoardList" resultType="com.jy.dto.BoardDto">
+		<![CDATA[
+			SELECT b2.*
+			FROM(SELECT rownum rnum, b1.*
+			FROM(SELECT * FROM board_list ORDER BY bno DESC) b1) b2
+			WHERE rnum>=#{start} AND rnum<=#{end}
+		]]>
+	</select>
+	
+	<select id="selectAllCount" resultType="java.lang.Integer">
+		SELECT count(*) FROM board_list
+	</select>
+	
+	<update id="incHitCount">
+		UPDATE BOARD_LIST SET hitcount=hitcount+1 WHERE bno = #{bno}
+	</update>
+	
+	<select id="selectBoardDetail" resultType="com.jy.dto.BoardDto">
+		SELECT * FROM BOARD_LIST WHERE bno = #{bno}
+	</select>
+	
+	<insert id="insertBoard">
+		INSERT INTO board_list (bno, title, content, writer_id, hitcount, writedate, nickname)
+		VALUES (SEQ_BNO.nextval, #{title}, #{content}, #{loginId}, 0, sysdate,
+				(SELECT nickname FROM member WHERE member_id=#{loginId}))
+	</insert>
+	
+	<insert id="insertBoardAndPhoto">
+		INSERT INTO board_list (bno, title, content, writer_id, hitcount, writedate, nickname,photo)
+		VALUES (SEQ_BNO.nextval, #{title}, #{content}, #{loginId}, 0, sysdate,
+				(SELECT nickname FROM member WHERE member_id=#{loginId}),#{photo})
+	</insert>
+	
+	<update id="updateBoard">
+		UPDATE 	board_list 
+		SET 	title=#{title}, content = #{content},writedate= SYSDATE 
+		WHERE 	bno = #{bno}
+	</update>
+	
+	<delete id="deleteBoard">
+		DELETE FROM board_list WHERE bno=#{bno}
+	</delete>
+	
+	<select id="selectPhoto" resultType="com.jy.dto.BoardDto">
+		<![CDATA[
+			SELECT 	* 
+			FROM 	board_list
+			WHERE 	photo IS NOT NULL
+		]]>
+	</select>
+	
+	<select id="getWriterId" resultType="java.lang.String">
+			SELECT 	writer_id
+			FROM 	board_list 
+			WHERE 	nickname = #{nickname} AND bno =#{bno}
+	</select>
+	
+	<select id="selectComment" resultType="com.jy.dto.CommentDto">
+			SELECT 	c.*, m.nickname 
+			FROM 	comments c, member m
+			WHERE 	c.writer_id = m.member_id 
+			AND 	c.bno=#{bno} ORDER BY NVL(c.ref, c.rno), c.r_order
+	</select>
+	
+	<select id="searchKeyword" resultType="com.jy.dto.BoardDto">
+			SELECT 	* 
+			FROM 	board_list 
+			WHERE 	title LIKE '%' || #{searchKeyword} || '%' OR content LIKE '%' || #{searchKeyword} || '%' 
+			ORDER BY bno DESC
+	</select>
+	
+	<select id="boardSelect" resultType="com.jy.dto.BoardDto">
+			SELECT 	bs.bno, bs.title, m.nickname, bs.writedate, bs.hitcount, bs.photo
+			FROM 	board_list bs, member m  
+			WHERE 	bs.writer_id=m.member_id
+	</select>
+</mapper>
